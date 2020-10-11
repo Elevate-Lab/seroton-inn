@@ -1,8 +1,7 @@
-# Import-Template
+# Project Seroton Inn :people_holding_hands:
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-A template repo for making our lives easier 🐬
 
 ## Welcome to Elevate labs 🚀
 
@@ -12,6 +11,25 @@ A template repo for making our lives easier 🐬
 We are here to allow collaboration through this Organization inorder to lift/elevate each other through learning.Amazing!!:heart_eyes::heart_eyes:
 
  Anyone and everyone is welcomed!:sunglasses:
+ 
+### Summary 
+
+Seroton Inn is an **open source social media platform** :unicorn: which prioritizes the user’s mental health :brain::rainbow: above everything else. This app will be designed to cater to the mental health of the users first and foremost, and any business interests will be secondary. The goal will be to provide a **healthy, safe, and toxic-free social experience** to the user. The word ‘safe’ here is used to demarcate this site from other platforms which freely mine “user data” in order to better manipulate their users into either forming certain sorts of opinions or buying certain kinds of products - something which Seroton Inn will strive to sidestep. 
+
+### Key Feature Set :key:
+
+1. Removing the likes :+1: feature which serves as the bread-and-butter :bread::butter: of all social media platforms, Seroton Inn will instead focus on how posts make the individual user :adult::grinning: feel. This will be achieved with the help of *emotion-segmented feeds known as **Moods***.
+
+1. The user will set the *daily usage limit :stopwatch: of the site* to prevent over-indulgence. 
+
+1. Using APIs and machine-learning softwares :robot::woman_student:, the site will continuously parse posts :incoming_envelope:, comment sections :speech_balloon:, and other content and will *selectively find and eliminate toxic content :trollface:*. This includes material that falls under abuse, harassment, NSFW content, etc. :see_no_evil::speak_no_evil::hear_no_evil:
+
+1. *A free and open source social media platform* will establish a hitherto unprecedented degree of trust :handshake: and reliance between the users and the clients. Moreover, the site itself will be very dynamic, flexibly adopting new features.
+
+1. *Soothing nature :evergreen_tree::sunflower: sounds* will continuously be played on the site to help relax the user :massage:. These can be turned off if the user prefers to use a third-party app while scrolling.
+
+1. For each user, they will be able to see a graphical pie-chart :chart: for each of their contacts, which will help the user see what portion of each of their contact’s content belongs in which of their Moods. This will help them identify the sources of the content that most upsets them.
+
 
 ## Contributors ✨
 
