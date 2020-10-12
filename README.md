@@ -22,9 +22,9 @@ This Project includes a tech stack of Front end and Back end Development.:cop:
 | FRONT END    :heart_eyes::heart_eyes: | BACK END     :stuck_out_tongue_winking_eye::stuck_out_tongue_winking_eye:           |
 | ------------------------------------- | ------------------------------------------------------------------------------------|
 | HTML, CSS, JAVASCRIPT                 |    MongoDB                                                                          |
-| Swiper.js                             |    Node.js                                                                          |
+| React.js                              |    Node.js                                                                          |
 | Sass                                  |    Express.js                                                                       |
-| Mobile: Flutter                       |    Passport.js/ Firebase                                                            |
+| Mobile: Flutter                       |    Firebase                                                                         |
 |                                       |                                                                                     |
 
 
