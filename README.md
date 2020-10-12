@@ -2,15 +2,6 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-
-## Welcome to Elevate labs 🚀
-
-> Elevate Labs is here to make a change. We believe in contributing towards the community through technology.:wink:
- We also believe in the strength of team! If you too want to be a part of change, we are happy to have you on-board 🥳
-
-We are here to allow collaboration through this Organization inorder to lift/elevate each other through learning.Amazing!!:heart_eyes::heart_eyes:
-
- Anyone and everyone is welcomed!:sunglasses:
  
 ### Summary 
 
