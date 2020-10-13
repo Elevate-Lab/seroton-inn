@@ -13,6 +13,23 @@ We are here to allow collaboration through this Organization inorder to lift/ele
 
  Anyone and everyone is welcomed!:sunglasses:
 
+
+
+##  Tech Stack for the Project :collision::collision:
+
+This Project includes a tech stack of Front end and Back end Development.:cop:
+
+| FRONT END    :heart_eyes::heart_eyes: | BACK END     :stuck_out_tongue_winking_eye::stuck_out_tongue_winking_eye:           |
+| ------------------------------------- | ------------------------------------------------------------------------------------|
+| HTML, CSS, JAVASCRIPT                 |    MongoDB                                                                          |
+| React.js                              |    Node.js                                                                          |
+| Sass                                  |    Express.js                                                                       |
+| Mobile: Flutter                       |    Firebase                                                                         |
+|                                       |                                                                                     |
+
+
+
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people 💜 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
