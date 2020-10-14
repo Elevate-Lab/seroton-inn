@@ -28,7 +28,14 @@ This Project includes a tech stack of Front end and Back end Development.:cop:
 |                                       |                                                                                     |
 
 
-
+## To run locally
+```bash
+$ git clone https://github.com/Elevate-Lab/seroton-inn 
+$ cd seroton-inn
+$ npm i
+$ npm start
+```
+Navigate to `localhost:3000` on your Browser.
 
 ## Contributors ✨
 
