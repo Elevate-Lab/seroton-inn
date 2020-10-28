@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+.profile {
+  font-family: 'Roboto', sans-serif;
+
+  // NAVBAR
+  &__navbar {
+    position: fixed;
+    top: 0;
+    height: 8rem;
+    width: 100%;
+    box-shadow: 0 1px 5px 2px rgba($cb, .2);
+    background-color: $cw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__navbar-logo {
+    font-size: 4rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    opacity: .5;
+  }
+
+  // SIDEBAR
+  &__sidebar {
+    position: fixed;
+    top: 8rem;
+    left: 0;
+    width: 10rem;
+    height: calc(100vh - 8rem);
+    padding: 2rem 0;
+    background-color: $cp;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-betweeen;
+  }
+
+  &__sidebar-nav {
+    height: 100%;
+  }
+
+  &__sidebar-icon {
+    position: relative;
+    height: 6rem;
+    width: 6rem;
+    background-color: $cp-l;
+    border-radius: 50%;
+
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__sidebar-svg {
+    @include absCenter;
+    fill: $cp;
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  // MAIN
+  &__main {
+    margin: 8rem 0 0 10rem;
+    padding: 5rem;
+    background-color: #F3F3F3;
+    min-height: calc(100vh - 8rem);
+
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    column-gap: 5rem;
+    row-gap: 5rem;
+    align-items: start;
+
+    @include respond(tab-port) {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+  }
+
+  // LEFT
+  &__left {
+    background-color: $cw;
+    padding: 3rem 3rem 1rem 3rem;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px 2px rgba($cb, .2);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include respond(tab-port) {
+      min-width: 300px;
+      padding: 3rem 5rem 1rem 5rem;
+    }
+  }
+
+  &__left-imgBox {
+    width: 200px;
+    height: 200px;
+  }
+
+  &__left-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__left-username {
+    margin: 1.5rem 0;
+  }
+
+  &__left-fullname {
+    width: 100%;
+  }
+
+  &__left-about {
+    width: 100%;
+    padding: 2rem 0 3rem 0;
+    opacity: .5;
+    border-bottom: 1px solid rgba($cb, .1);
+  }
+
+  &__left-followers,
+  &__left-following {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba($cb, .1);
+
+    display: flex;
+    align-items: center;
+
+    &--icon {
+      margin-right: 2rem;
+    }
+
+    &--btn {
+      background-color: $cw;
+    }
+  }
+
+  &__left-followers {
+    &--svg {
+      fill: #1E31DA;
+      height: 20px;
+      width: 20px;
+    }
+  }
+
+  &__left-following {
+    &--svg {
+      fill: #34D226;
+      height: 20px;
+      width: 20px;
+    }
+  }
+
+  &__left-follow {
+    width: 100%;
+    margin: 3rem 0 15rem 0;
+    padding: 1rem;
+    border-radius: 7.5px;
+    background-color: #A293FF;
+  }
+
+  &__left-edit {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    &--icon {
+      margin-right: 1.5rem;
+    }
+
+    &--svg {
+      fill: #C4C4C4;
+      height: 20px;
+      width: 20px;
+    }
+
+    &--btn {
+      background-color: $cw;
+      color: #c4c4c4;
+    }
+  }
+
+  // RIGHT
+  &__right {
+    background-color: $cw;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px 2px rgba($cb, .2);
+    overflow: hidden;
+
+    @include respond(tab-port) {
+      width: 100%;
+    }
+  }
+
+  &__right-navBtn {
+    width: 50%;
+    padding: 2rem;
+    background-color: $cp-l;
+    border-bottom: 2px solid $cp-l;
+    font-size: 2.5rem;
+
+    &:hover {
+      border-bottom: 2px solid $cp-l;
+    }
+
+    &--active.profile__right-navBtn {
+      background-color: $cw;
+      border-bottom: 2px solid $cp;
+    }
+  }
+
+  &__right-main {
+    padding: 5rem;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    column-gap: 5rem;
+    row-gap: 5rem;
+    justify-items: center;
+  }
+
+  &__right-card {
+    width: 35rem;
+    padding: 5px;
+    box-shadow: 0 1px 5px 2px rgba($cb, .2);
+  }
+
+  &__right-imgBox {
+    width: 100%;
+    height: 25rem;
+  }
+
+  &__right-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__right-desc {
+    padding: 1.2rem 1rem;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__right-title {
+    font-size: 2rem;
+  }
+
+  &__right-icons {
+    display: flex;
+    align-items: center;
+  }
+
+  &__right-icon {
+    height: 2rem;
+    width: 2rem;
+    background-color: #c4c4c4;
+    border-radius: 50%;
+
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+}
