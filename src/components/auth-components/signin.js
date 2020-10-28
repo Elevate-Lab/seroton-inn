@@ -115,29 +115,27 @@ export default function CenteredGrid() {
         <div className={classes.root2}>
             <Container className={classes.padd70} maxWidth="lg">
                 <Grid container className={classes.gridContainer}>
+                    <Grid item className={classes.gridRight} md={4} xs={12}>
+                        <img src={logo} className={classes.logo} alt="logo"></img>  
+                        <Typography className={classes.heading2} variant="h4">New Here!?</Typography>
+                        <Typography className={classes.subheading2} variant="h5">Start your journey with us! <br></br>Sign up now</Typography>
+                        <a href="#" className={classes.signInLink}>
+                            Sign Up
+                        </a> 
+                    </Grid>
                     <Grid item className={classes.gridLeft} md={8} xs={12}>
-                        <Typography className={classes.heading} variant="h3">Create Account</Typography>
+                        <Typography className={classes.heading} variant="h3">Sign In <br></br>to Seretonin Inn</Typography>
                         <a href="#">
                             <img src={gButton} className={classes.logo} alt="google button"></img>
                         </a> 
-                        <Typography className={classes.subheading}>or use your email for registration</Typography>
+                        <Typography className={classes.subheading}>or use your email account</Typography>
                         <Container maxWidth="sm">
                             <form noValidate autoComplete="off">
-                                <TextField id="outlined-basic" className={classes.inputText} label="Name" variant="outlined" />
                                 <TextField id="outlined-basic" className={classes.inputText} label="Email" variant="outlined" />
                                 <TextField id="outlined-basic" className={classes.inputText} label="Password" variant="outlined" />
-                                <TextField id="outlined-basic" className={classes.inputText} label="Confirm Password" variant="outlined" />
-                                <Button className={classes.formButton} variant="contained">Sign Up</Button>
+                                <Button className={classes.formButton} variant="contained">Sign In</Button>
                             </form>
                         </Container>
-                    </Grid>
-                    <Grid item className={classes.gridRight} md={4} xs={12}>
-                        <img src={logo} className={classes.logo} alt="logo"></img>  
-                        <Typography className={classes.heading2} variant="h4">Already Joined!</Typography>
-                        <Typography className={classes.subheading2} variant="h5">To keep connected with us login <br></br> with your personal info</Typography>
-                        <a href="#" className={classes.signInLink}>
-                            Sign In
-                        </a> 
                     </Grid>
                 </Grid>
             </Container>
