@@ -94,7 +94,7 @@
     align-items: center;
 
     @include respond(tab-port) {
-      min-width: 400px;
+      min-width: 300px;
       padding: 3rem 5rem 1rem 5rem;
     }
   }
