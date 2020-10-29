@@ -43,11 +43,19 @@ const useStyles = makeStyles((theme) => ({
         textAlign:"center",
         borderRadius:"16px 0 0 16px",
         backgroundColor: "white",
+        order: 1,
+        [theme.breakpoints.up("md")]: {
+            order: 2
+        }
     },
     gridRight:{
         textAlign:"center",
         background:"url("+ backgroundImage +")",
         paddingBottom: "40px",
+        order: 2,
+        [theme.breakpoints.up("md")]: {
+            order: 1
+        }
     },
     logo:{
         width:"150px",
