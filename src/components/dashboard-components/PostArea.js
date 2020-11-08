@@ -39,9 +39,11 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "space-between"
     },
     composeMessage: {
-        paddingLeft: '5px',
+        paddingLeft: '12px',
         fontSize: "1.8rem",
-        fontWeight: "800"
+        fontWeight: "500",
+        display: "flex",
+        alignItems: "center",
     },
     composeButton: {
         boxShadow: 'none',
@@ -49,22 +51,40 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "1.5rem"
     },
     userImage: {
-        borderRadius: "5px",
-        width: "25px",
-        height: "25px"
+        borderRadius: "1rem",
+        width: "4.2rem",
+        height: "4.2rem"
+    },
+    userName: {
+        paddingLeft: '12px',
+        fontSize: "1.8rem",
+        fontWeight: "500"
+    },
+    dateTimeDetails: {
+        paddingLeft: '12px',
+        fontSize: "1.6rem",
+        fontWeight: "500",
+        color: "rgba(0,0,0,0.6)"
+    },
+    moreHorizIcon: {
+        fontSize: "20px",
+        color: "rgba(0,0,0,0.8)",
+        transform: "translate(0, -8px)"
     },
     postGridItem: {
-        padding: "15px",
+        padding: "12px",
         backgroundColor: "white",
-        borderRadius: "5px",
-        marginTop: "10px"
+        borderRadius: "10px",
+        marginTop: "16px"
     },
     postContentText: {
-        fontSize: "12px"
+        fontSize: "2rem",
+        lineHeight: "2.6rem",
+        margin: "16px 0"
     },
     postImageTextGrid: {
         borderRadius: "5px",
-        margin: "5px auto 5px auto",
+        margin: "16px auto 0px auto",
     },
     postImage: {
         width: "100%"
@@ -76,8 +96,17 @@ const useStyles = makeStyles((theme) => ({
             paddingRight: "0px"
         }
     },
+    reactions: { 
+        width: "auto",
+        display: "flex",
+        alignItems: "center"
+    },
+    break: {
+        borderBottom: "0.1px solid rgba(0,0,0,0.1)",
+        width: "100%",
+    },
     postInputBox: {
-        paddingLeft: "5px",
+        paddingLeft: "12px",
         width: "100%",
         fontSize: "16px",
         backgroundColor: "#F5F5F5",
@@ -87,7 +116,12 @@ const useStyles = makeStyles((theme) => ({
             fontSize: "16px",
             outline: "none",
         }
-    }
+    },
+    commentImage: {
+        borderRadius: "5px",
+        width: "29px",
+        height: "29px"
+    },
 }));
 
 export default function Posts() {
@@ -99,7 +133,7 @@ export default function Posts() {
                     <Grid item style={{ display: "flex", alignItems: "center", justifyContent: "space-evenly" }}>
                         <img src={testImg} alt="testImg" className={classes.userImage} />
                         <Typography className={classes.composeMessage}>
-                            Hey! How you doing? Share your mood! <MoodIcon />
+                            Hey! How you doing? Share your mood! <MoodIcon style={{fontSize: "20px", paddingLeft:"4px"}} />
                         </Typography>
                     </Grid>
                     <Grid item>
@@ -112,12 +146,17 @@ export default function Posts() {
                     <Grid item style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                         <Grid item style={{ display: "flex", alignItems: "center", justifyContent: "space-evenly" }}>
                             <img src={testImg} alt="testImg" className={classes.userImage} />
-                            <Typography className={classes.composeMessage}>
-                                username
-                                        </Typography>
+                            <Grid>
+                                <Typography className={classes.userName}>
+                                    username
+                                </Typography>
+                                <Typography className={classes.dateTimeDetails}>
+                                    Time • Place
+                                </Typography>
+                            </Grid>
                         </Grid>
                         <Grid item>
-                            <MoreHorizIcon />
+                            <MoreHorizIcon className={classes.moreHorizIcon}/>
                         </Grid>
                     </Grid>
                     <Grid item className={classes.postImageTextGrid}>
@@ -125,27 +164,27 @@ export default function Posts() {
                         <Typography className={classes.postContentText}>
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                                        </Typography>
+                        </Typography>
                     </Grid>
-                    <hr />
+                    <Grid className={classes.break}></Grid>
                     <Grid item>
-                        <Grid container style={{ flexWrap: "nowrap", padding: "10px 0px 10px 0px" }} justify="flex-start">
-                            <Grid container style={{ width: "auto" }}>
-                                <ChatBubbleOutlineIcon style={{ fontSize: "16px", padding: "0px 8px 0px 0px", width: "3em" }} />
-                                <Typography style={{ fontSize: "16px", padding: "0px 8px 0px 0px" }}>
+                        <Grid container style={{ display: "flex",flexWrap: "nowrap", padding: "10px 0px 10px 0px", transform: "translate(-16px, 0)" }} justify="flex-start">
+                            <Grid container className={classes.reactions}>
+                                <ChatBubbleOutlineIcon style={{ fontSize: "2rem", width: "3em" }} />
+                                <Typography style={{ fontSize: "2rem", transform: "translate(-8px,0)" }}>
                                     Comments
-                                                </Typography>
+                                </Typography>
                             </Grid>
-                            <Grid container style={{ width: "auto" }}>
-                                <ShareIcon style={{ fontSize: "16px", padding: "0px 8px 0px 0px", width: "3em" }} />
-                                <Typography style={{ fontSize: "16px", padding: "0px 8px 0px 0px" }}>
+                            <Grid container className={classes.reactions}>
+                                <ShareIcon style={{ fontSize: "2rem", padding: "0px 8px 0px 0px", width: "3em" }} />
+                                <Typography style={{ fontSize: "2rem", padding: "0px 0px 0px 0px", transform: "translate(-12px,0)" }}>
                                     Share
-                                                </Typography>
+                                </Typography>
                             </Grid>
                         </Grid>
                     </Grid>
                     <Grid item className={classes.postInputField}>
-                        <img src={testImg} alt="testImg" className={classes.userImage} />
+                        <img src={testImg} alt="testImg" className={classes.commentImage} />
                         <TextField
                             className={classes.postInputBox}
                             id="outlined-search"
