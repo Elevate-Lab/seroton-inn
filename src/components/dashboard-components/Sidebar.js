@@ -12,12 +12,12 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 const useStyles = makeStyles((theme) => ({
     sidebar: {
         display: 'none',
-        width: "11%",
+        maxWidth: "80px",
         backgroundColor: "#362073",
         maxHeight: "90%",
         [theme.breakpoints.up('sm')]: {
             display: 'flex',
-            width: "13%"
+            minWidth: "80px"
         },
         [theme.breakpoints.up('md')]: {
             width: "100px"

@@ -38,13 +38,14 @@ const useStyles = makeStyles((theme) => ({
     root5: {
         overflowY: "scroll",
         flexGrow: "1",
-        backgroundColor: "#F5F5F5"
+        backgroundColor: "#F5F5F5",
     },
     contentContainerGrid: {
         flexWrap: "nowrap"
     },
     notificationArea: {
         flexGrow: "1",
+        maxWidth: "256px",
         width: "18%",
         backgroundColor: "white",
         display: 'none',
@@ -79,9 +80,9 @@ export default function DashBoard() {
             </div>
             <Grid container className={classes.root3} style={{flexWrap: "nowrap", height: "90%"}}>
                 <Sidebar />
-                <div className={classes.root5} style={{overflowY: "scroll",height: "90vh"}}>
+                <div className={classes.root5} style={{overflowY: "auto",height: "90vh"}}>
                     <Grid container className={classes.contentContainerGrid} >
-                        <Posts />
+                        <Posts/>
                         <Grid item className={classes.notificationArea}>
                             <Typography variant="h4">
                                 Notifications
