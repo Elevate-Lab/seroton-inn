@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap");
+
+.compose {
+  width: 90%;
+  max-width: 1000px;
+  margin: 10rem auto;
+  // box-shadow: 0 1px 5px 2px rgba($cb, 0.2);
+  box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.18);
+  box-shadow: 0px 14px 28px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  padding: 3rem;
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__format {
+    width: 100%;
+    margin-left: 3rem;
+
+    > * {
+      background-color: #f2f2f2;
+      border-radius: 1rem;
+    }
+
+    .imagePreviewContainer {
+      display: flex;
+      width: inherit;
+    }
+
+    &-submit {
+      margin-top: 2rem;
+      padding: 2rem;
+      background-color: #f2f2f2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .MuiButton-label {
+        font-size: 1.5rem;
+      }
+
+      .MuiTouchRipple-root {
+        display: none;
+      }
+
+      .MuiIconButton-root:hover {
+        all: unset;
+      }
+
+      span.textformat,
+      span.MuiIconButton-label {
+        margin-right: 2.5rem;
+        font-size: 2.5rem;
+        cursor: pointer;
+
+        svg {
+          font-size: inherit;
+        }
+
+        // svg.MuiSvgIcon-root {
+        //   color: black;
+        // }
+      }
+    }
+
+    &-create {
+      padding: 2rem;
+      .imagePreviewContainer {
+        display: flex;
+        flex-wrap: wrap;
+        div img.image-upload {
+          height: 15rem;
+          width: 15rem;
+        }
+      }
+    }
+
+    div.DraftEditor-root {
+      margin-top: 2rem;
+      height: 25rem;
+      font-family: "Montserrat", sans-serif;
+      word-wrap: break-word;
+    }
+
+    div.toolbar {
+      padding: 1rem 0;
+      border-bottom: 1px solid #dddddd;
+
+      span.selected {
+        svg {
+          background-color: #dddddd;
+        }
+      }
+      span.textformat {
+        margin-right: 2.5rem;
+        font-size: 2.5rem;
+        cursor: pointer;
+
+        svg {
+          font-size: inherit;
+        }
+      }
+    }
+  }
+}
+
+.MuiDialog-paper{
+    .MuiDialogTitle-root *{
+      font-size: 2.5rem;
+    }
+
+    .MuiDialogContent-root *{
+      font-size: 1.5rem;
+    }
+
+    .MuiDialogActions-root *{
+      font-size: 1.5rem;
+    }
+}
+// div.toolbar input.selected {
+//   padding: 1rem;
+//   margin-right: 0.4rem;
+//   background-color: #9b9797;
+// }
+
+.profile-avatar {
+  // display: inline-block;
+  max-width: 60px;
+  max-height: 60px;
+  flex: 15%;
+
+  &__image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    // box-shadow: 0 1px 5px 2px rgba($cb, .2);
+  }
+}
+
+.create-post {
+  flex: 85%;
+}
