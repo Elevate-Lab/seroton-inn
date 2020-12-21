@@ -1,11 +1,8 @@
 import React from 'react';
 
-import { ReactComponent as Leaf } from '../assets/leaf.svg';
 import { ReactComponent as Settings } from '../assets/settings.svg';
 import { ReactComponent as Boy } from '../assets/boy.svg';
-import { ReactComponent as User } from '../assets/user.svg';
-import { ReactComponent as Users } from '../assets/users.svg';
-import { ReactComponent as Grid } from '../assets/grid.svg';
+import BottomNav from './BottomNav';
 
 const Profile = props => {
     return (
@@ -15,7 +12,7 @@ const Profile = props => {
                 <div className="profile__navbar-logo">LOGO</div>
             </div>
 
-            <div className="profile__sidebar">
+            {/* <div className="profile__sidebar">
                 <div className="profile__sidebar-nav">
                     <div className="profile__sidebar-icon">
                         <Grid className='profile__sidebar-svg' />
@@ -35,36 +32,45 @@ const Profile = props => {
                         <Settings className='profile__sidebar-svg' />
                     </div>
                 </div>
-            </div>
+            </div> */}
 
+            <div className="profile__container">
             <div className="profile__main">
 
                 <div className="profile__left">
-                    <div className="profile__left-imgBox">
-                        <img className="profile__left-img" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="User Pic" />
-                    </div>
-                    <div className="profile__left-username">
-                        elena@rock12
-                    </div>
-                    <div className="profile__left-fullname">
-                        Elena Queens
-                    </div>
-                    <div className="profile__left-about">
-                        About
-                    </div>
-                    <div className="profile__left-followers">
-                        <div className="profile__left-followers--icon">
-                            <Boy className='profile__left-followers--svg' />
+                    <div className="profile__left-container">
+                        <div className="profile__photo-container">
+                            <div className="profile__left-imgBox-container">
+                                <div className="profile__left-imgBox">
+                                    <img className="profile__left-img" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="User Pic" />
+                                </div>
+                                <div className="profile__left-username">
+                                    elena@rock12
+                                </div>
+                            </div>
+                            <div className="profile__left-fullname">
+                                Elena Queens
+                            </div>
+                            <div className="profile__left-about">
+                                About
+                            </div>
                         </div>
-                        <button className="profile__left-followers--btn">Followers</button>
-                    </div>
-                    <div className="profile__left-following">
-                        <div className="profile__left-following--icon">
-                            <Boy className='profile__left-following--svg' />
+                        <div className="profile__stats-container">
+                            <div className="profile__left-followers">
+                                <div className="profile__left-followers--icon">
+                                    <Boy className='profile__left-followers--svg' />
+                                </div>
+                                <button className="profile__left-followers--btn">Followers</button>
+                            </div>
+                            <div className="profile__left-following">
+                                <div className="profile__left-following--icon">
+                                    <Boy className='profile__left-following--svg' />
+                                </div>
+                                <button className="profile__left-following--btn">Following</button>
+                            </div>
+                            <button className="profile__left-follow">Follow Button</button>
                         </div>
-                        <button className="profile__left-following--btn">Following</button>
                     </div>
-                    <button className="profile__left-follow">Follow Button</button>
                     <div className="profile__left-edit">
                         <div className="profile__left-edit--icon">
                             <Settings className='profile__left-edit--svg' />
@@ -168,7 +174,8 @@ const Profile = props => {
                 </div>
 
             </div>
-
+            </div>
+            <BottomNav />
         </div>
     );
 };

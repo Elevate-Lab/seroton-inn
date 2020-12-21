@@ -24,48 +24,13 @@
     opacity: .5;
   }
 
-  // SIDEBAR
-  &__sidebar {
-    position: fixed;
-    top: 8rem;
-    left: 0;
-    width: 10rem;
-    height: calc(100vh - 8rem);
-    padding: 2rem 0;
-    background-color: $cp;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-betweeen;
-  }
-
-  &__sidebar-nav {
-    height: 100%;
-  }
-
-  &__sidebar-icon {
-    position: relative;
-    height: 6rem;
-    width: 6rem;
-    background-color: $cp-l;
-    border-radius: 50%;
-
-    &:not(:last-child) {
-      margin-bottom: 2rem;
-    }
-  }
-
-  &__sidebar-svg {
-    @include absCenter;
-    fill: $cp;
-    height: 2.5rem;
-    width: 2.5rem;
-  }
-
   // MAIN
+  &__container{
+    background-color: #F3F3F3;
+  }
   &__main {
-    margin: 8rem 0 0 10rem;
+    max-width: 1280px;
+    margin: 6rem auto 0 auto;
     padding: 5rem;
     background-color: #F3F3F3;
     min-height: calc(100vh - 8rem);
@@ -79,6 +44,7 @@
     @include respond(tab-port) {
       grid-template-columns: 1fr;
       justify-items: center;
+      width: 100%;
     }
   }
 
@@ -87,21 +53,47 @@
     background-color: $cw;
     padding: 3rem 3rem 1rem 3rem;
     border-radius: 10px;
-    box-shadow: 0 1px 5px 2px rgba($cb, .2);
+    box-shadow: 0px 0px 50px -18px rgba(0, 0, 0, 0.25);
 
+    @include respond(tab-port) {
+      //min-width: 300px;
+      width: 100%;
+      padding: 3rem;
+    }
+  }
+  &__left-container{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+    @include respond(tab-port){
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+  }
+
+  &__stats-container{
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    @include respond(tab-port) {
-      min-width: 300px;
-      padding: 3rem 5rem 1rem 5rem;
+    @include respond(tab-port){
+      margin-bottom: 5rem;
     }
+  }
+  &__left-imgBox-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   &__left-imgBox {
     width: 200px;
     height: 200px;
+    @include respond(tab-port){
+      width: 130px;
+      height: 130px;
+    }
   }
 
   &__left-img {
@@ -113,6 +105,8 @@
 
   &__left-username {
     margin: 1.5rem 0;
+    font-size: 2rem;
+    font-weight: 500;
   }
 
   &__left-fullname {
@@ -124,6 +118,10 @@
     padding: 2rem 0 3rem 0;
     opacity: .5;
     border-bottom: 1px solid rgba($cb, .1);
+
+    @include respond(tab-port){
+      border-bottom: none;
+    }
   }
 
   &__left-followers,
@@ -162,13 +160,16 @@
 
   &__left-follow {
     width: 100%;
-    margin: 3rem 0 15rem 0;
-    padding: 1rem;
-    border-radius: 7.5px;
-    background-color: #A293FF;
+    margin: 3rem 0 7rem 0;
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    background-color:#C5C3FF;
+    font-weight: 600;
+    color: #424242;
   }
 
   &__left-edit {
+    margin: 3rem 0 0 0;
     width: 100%;
     display: flex;
     align-items: center;
@@ -187,13 +188,16 @@
       background-color: $cw;
       color: #c4c4c4;
     }
+    @include respond(tab-port){
+      display: none;
+    }
   }
 
   // RIGHT
   &__right {
     background-color: $cw;
     border-radius: 10px;
-    box-shadow: 0 1px 5px 2px rgba($cb, .2);
+    box-shadow: 0px 0px 50px -18px rgba(0, 0, 0, 0.25);
     overflow: hidden;
 
     @include respond(tab-port) {
@@ -219,7 +223,7 @@
   }
 
   &__right-main {
-    padding: 5rem;
+    padding: 1.5rem;
 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
@@ -229,9 +233,10 @@
   }
 
   &__right-card {
-    width: 35rem;
-    padding: 5px;
-    box-shadow: 0 1px 5px 2px rgba($cb, .2);
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
   }
 
   &__right-imgBox {
