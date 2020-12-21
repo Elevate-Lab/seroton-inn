@@ -7,6 +7,7 @@ import SignIn from "./components/auth-components/signin";
 import Profile from "./components/Profile";
 import Compose from "./components/compose-components/Compose";
 import Dashboard from "./components/dashboard-components/Dashboard";
+import BottomNav from "./components/BottomNav";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route path="/compose" component={Compose} />
+          <Route path="/footer" component={BottomNav} />
         </Switch>
       </BrowserRouter>
     </div>
