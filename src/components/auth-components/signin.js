@@ -6,6 +6,10 @@ import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import IconButton from '@material-ui/core/IconButton';
 
 import logo from "../../assests/image/logo.png";
 import backgroundImage from "../../assests/image/auth-image.png";
@@ -135,7 +139,7 @@ export default function CenteredGrid() {
     // This function will be called upon clicking the button and will send the login info to the back end.
 
     function sendInfo(){
-        axios.post(`http://localhost:5000/login`, querystring.stringify({username: info.username, password: info.password}), {
+        axios.post(`/login`, querystring.stringify({username: info.username, password: info.password}), {
             headers: {
             'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
             },
@@ -155,8 +159,18 @@ export default function CenteredGrid() {
 
     const handleChange = (prop) => (event) => {
         updateInfo({...info, [prop]: event.target.value});
-        console.log(info);
+        // console.log(info);
     };
+
+    //These two functions help operate the Visibility Icon.
+
+    const handleClickShowPassword = () => {
+        updateInfo({ ...info, showPassword: !info.showPassword });
+      };
+    
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+      };
 
   return (
     <div className={classes.root}>
@@ -187,10 +201,25 @@ export default function CenteredGrid() {
                                 variant="outlined" />
                                 <TextField id="outlined-basic" 
                                 className={classes.inputText} 
+                                type={info.showPassword ? 'text' : 'password'}
                                 label="Password" 
                                 value={info.password}
                                 onChange={handleChange('password')}
-                                variant="outlined" />
+                                variant="outlined" 
+                                InputProps={{
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                            >
+                                            {info.showPassword ? <Visibility /> : <VisibilityOff />}
+                                            </IconButton>
+                                            </InputAdornment>
+                                        ),
+                                    }}   
+                                />
                                 <Button onClick={sendInfo} className={classes.formButton} variant="contained">Sign In</Button>
                             </form>
                         </Container>

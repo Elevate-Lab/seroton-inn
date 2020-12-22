@@ -6,6 +6,10 @@ import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import IconButton from '@material-ui/core/IconButton';
 
 import logo from "../../assests/image/logo.png";
 import backgroundImage from "../../assests/image/auth-image.png";
@@ -128,33 +132,53 @@ export default function CenteredGrid() {
         email: '',
         password: '',
         cpassword: '',
+        showPassword: false
     });
 
-    // Note: though this function will send username, email, and password to the back end, within the database only username nad password will be stored. Needs some reviewing.
+    // Note: This function will send the username, email and password to the back end, which will be stored in the local database.
 
     function sendInfo() {
-        axios.post(`/register`, querystring.stringify({username: info.username, password: info.password, email: info.email}), {
-            headers: {
-              'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
-            },
-            credentials: 'include',
-            withCredentials: true
-          }).then(function(response){
-            if (response.status === 200) {
-              localStorage.setItem('username', response.data.username)
-              localStorage.setItem('newUser',"true");
-              window.location = `/profile/${response.data.username}`          
-            }
-            console.log(response);
-          });
+
+        // This condition ensures that the passwords match.
+
+        if(info.password!==info.cpassword) {
+            alert("The password in both fields should match! Please try again.");
+        } else {
+
+            axios.post(`/register`, querystring.stringify({username: info.username, password: info.password, email: info.email}), {
+                headers: {
+                  'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+                },
+                credentials: 'include',
+                withCredentials: true
+              }).then(function(response){
+                if (response.status === 200) {
+                  localStorage.setItem('username', response.data.username)
+                  localStorage.setItem('newUser',"true");
+                  window.location = `/profile/${response.data.username}`          
+                }
+                console.log(response);
+              });
+        }
+
+        
     }
 
-    // Function to update the info.
+    //This function helps update the info.
 
     const handleChange = (prop) => (event) => {
         updateInfo({ ...info, [prop]: event.target.value });
       };
 
+      //Both of these functions below help operate the Visiblity Icon.
+
+      const handleClickShowPassword = () => {
+        updateInfo({ ...info, showPassword: !info.showPassword });
+      };
+    
+      const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+      };
     
 
   return (
@@ -184,16 +208,46 @@ export default function CenteredGrid() {
                                     variant="outlined" />
                                 <TextField id="outlined-basic" 
                                     className={classes.inputText} 
+                                    type={info.showPassword ? 'text' : 'password'}
                                     value={info.password} 
                                     label="Password" 
                                     onChange={handleChange('password')}
-                                    variant="outlined" />
+                                    variant="outlined"
+                                    InputProps={{
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                            >
+                                            {info.showPassword ? <Visibility /> : <VisibilityOff />}
+                                            </IconButton>
+                                            </InputAdornment>
+                                        ),
+                                    }}    
+                                    />
                                 <TextField id="outlined-basic" 
                                     className={classes.inputText} 
+                                    type={info.showPassword ? 'text' : 'password'}
                                     value={info.cpassword} 
                                     label="Confirm Password" 
                                     onChange={handleChange('cpassword')}
-                                    variant="outlined" />
+                                    variant="outlined"
+                                    InputProps={{
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                            >
+                                            {info.showPassword ? <Visibility /> : <VisibilityOff />}
+                                            </IconButton>
+                                            </InputAdornment>
+                                        ),
+                                    }}     
+                                    />
                                 <Button onClick={sendInfo} className={classes.formButton} variant="contained">Sign Up</Button>
                             </form>
                         </Container>
