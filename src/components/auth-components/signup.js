@@ -13,7 +13,16 @@ import e1 from "../../assests/vector/Ellipse.png";
 import e2 from "../../assests/vector/Ellipse1.png";
 import gButton from "../../assests/vector/gButton.png";
 
-import "./auth.css"
+// For sending info to the back end:
+import axios from "axios";
+import querystring from "querystring";
+
+import "./auth.css";
+
+axios.defaults.withCredentials = true;
+
+
+
 
 const font =  "'Secular One', sans-serif";
 const font2 =  "'Roboto'";
@@ -107,8 +116,46 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
+
 export default function CenteredGrid() {
     const classes = useStyles();
+
+    // Using useState to store and update sign up info.
+
+    const [info, updateInfo] = React.useState({
+        username: '',
+        email: '',
+        password: '',
+        cpassword: '',
+    });
+
+    // Note: though this function will send username, email, and password to the back end, within the database only username nad password will be stored. Needs some reviewing.
+
+    function sendInfo() {
+        axios.post(`/register`, querystring.stringify({username: info.username, password: info.password, email: info.email}), {
+            headers: {
+              'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+            },
+            credentials: 'include',
+            withCredentials: true
+          }).then(function(response){
+            if (response.status === 200) {
+              localStorage.setItem('username', response.data.username)
+              localStorage.setItem('newUser',"true");
+              window.location = `/profile/${response.data.username}`          
+            }
+            console.log(response);
+          });
+    }
+
+    // Function to update the info.
+
+    const handleChange = (prop) => (event) => {
+        updateInfo({ ...info, [prop]: event.target.value });
+      };
+
+    
 
   return (
     <div className={classes.root}>
@@ -117,17 +164,37 @@ export default function CenteredGrid() {
                 <Grid container className={classes.gridContainer}>
                     <Grid item className={classes.gridLeft} md={8} xs={12}>
                         <Typography className={classes.heading} variant="h3">Create Account</Typography>
-                        <a href="#">
+                        <a href="/auth/google">
                             <img src={gButton} className={classes.logo} alt="google button"></img>
                         </a> 
                         <Typography className={classes.subheading}>or use your email for registration</Typography>
                         <Container maxWidth="sm">
                             <form noValidate autoComplete="off">
-                                <TextField id="outlined-basic" className={classes.inputText} label="Name" variant="outlined" />
-                                <TextField id="outlined-basic" className={classes.inputText} label="Email" variant="outlined" />
-                                <TextField id="outlined-basic" className={classes.inputText} label="Password" variant="outlined" />
-                                <TextField id="outlined-basic" className={classes.inputText} label="Confirm Password" variant="outlined" />
-                                <Button className={classes.formButton} variant="contained">Sign Up</Button>
+                                <TextField id="outlined-basic" 
+                                    className={classes.inputText} 
+                                    value={info.username} 
+                                    label="Username" 
+                                    onChange={handleChange('username')}
+                                    variant="outlined" />
+                                <TextField id="outlined-basic" 
+                                    className={classes.inputText} 
+                                    value={info.email} 
+                                    label="Email" 
+                                    onChange={handleChange('email')}
+                                    variant="outlined" />
+                                <TextField id="outlined-basic" 
+                                    className={classes.inputText} 
+                                    value={info.password} 
+                                    label="Password" 
+                                    onChange={handleChange('password')}
+                                    variant="outlined" />
+                                <TextField id="outlined-basic" 
+                                    className={classes.inputText} 
+                                    value={info.cpassword} 
+                                    label="Confirm Password" 
+                                    onChange={handleChange('cpassword')}
+                                    variant="outlined" />
+                                <Button onClick={sendInfo} className={classes.formButton} variant="contained">Sign Up</Button>
                             </form>
                         </Container>
                     </Grid>
@@ -135,7 +202,7 @@ export default function CenteredGrid() {
                         <img src={logo} className={classes.logo} alt="logo"></img>  
                         <Typography className={classes.heading2} variant="h4">Already Joined!</Typography>
                         <Typography className={classes.subheading2} variant="h5">To keep connected with us login <br></br> with your personal info</Typography>
-                        <a href="#" className={classes.signInLink}>
+                        <a href="/login" className={classes.signInLink}>
                             Sign In
                         </a> 
                     </Grid>
