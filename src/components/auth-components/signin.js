@@ -6,6 +6,10 @@ import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import IconButton from '@material-ui/core/IconButton';
 
 import logo from "../../assests/image/logo.png";
 import backgroundImage from "../../assests/image/auth-image.png";
@@ -15,8 +19,15 @@ import gButton from "../../assests/vector/gButton.png";
 
 import "./auth.css"
 
+// This will send the data to the back-end:
+
+import axios from "axios";
+import querystring from "querystring";
+
 const font =  "'Secular One', sans-serif";
 const font2 =  "'Roboto'";
+
+axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -118,6 +129,49 @@ const useStyles = makeStyles((theme) => ({
 export default function CenteredGrid() {
     const classes = useStyles();
 
+   // Using useState to store and update login info.
+
+    const [info, updateInfo] = React.useState({
+        username: '',
+        password: ''
+    });
+
+    // This function will be called upon clicking the button and will send the login info to the back end.
+
+    function sendInfo(){
+        axios.post(`/login`, querystring.stringify({username: info.username, password: info.password}), {
+            headers: {
+            'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+            },
+            credentials: 'include',
+            withCredentials: true
+        }).then(function(response){
+        if (response.status === 200) {
+            localStorage.setItem('username', response.data.username)
+            localStorage.setItem('newUser',"false");
+            window.location = `/profile/${response.data.username}`
+        }
+        console.log(response);
+      });
+    }
+
+    // Function to update the info.
+
+    const handleChange = (prop) => (event) => {
+        updateInfo({...info, [prop]: event.target.value});
+        // console.log(info);
+    };
+
+    //These two functions help operate the Visibility Icon.
+
+    const handleClickShowPassword = () => {
+        updateInfo({ ...info, showPassword: !info.showPassword });
+      };
+    
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+      };
+
   return (
     <div className={classes.root}>
         <div className={classes.root2}>
@@ -127,21 +181,46 @@ export default function CenteredGrid() {
                         <img src={logo} className={classes.logo} alt="logo"></img>  
                         <Typography className={classes.heading2} variant="h4">New Here!?</Typography>
                         <Typography className={classes.subheading2} variant="h5">Start your journey with us! <br></br>Sign up now</Typography>
-                        <a href="#" className={classes.signInLink}>
+                        <a href="/signup" className={classes.signInLink}>
                             Sign Up
                         </a> 
                     </Grid>
                     <Grid item className={classes.gridLeft} md={8} xs={12}>
-                        <Typography className={classes.heading} variant="h3">Sign In <br></br>to Seretonin Inn</Typography>
-                        <a href="#">
+                        <Typography className={classes.heading} variant="h3">Sign In <br></br>to Seroton-Inn</Typography>
+                        <a href="/auth/google">
                             <img src={gButton} className={classes.logo} alt="google button"></img>
                         </a> 
-                        <Typography className={classes.subheading}>or use your email account</Typography>
+                        <Typography className={classes.subheading}>or Sign in the old-fashioned way</Typography>
                         <Container maxWidth="sm">
                             <form noValidate autoComplete="off">
-                                <TextField id="outlined-basic" className={classes.inputText} label="Email" variant="outlined" />
-                                <TextField id="outlined-basic" className={classes.inputText} label="Password" variant="outlined" />
-                                <Button className={classes.formButton} variant="contained">Sign In</Button>
+                                <TextField id="outlined-basic" 
+                                className={classes.inputText} 
+                                label="Username" 
+                                value={info.username}
+                                onChange={handleChange('username')}
+                                variant="outlined" />
+                                <TextField id="outlined-basic" 
+                                className={classes.inputText} 
+                                type={info.showPassword ? 'text' : 'password'}
+                                label="Password" 
+                                value={info.password}
+                                onChange={handleChange('password')}
+                                variant="outlined" 
+                                InputProps={{
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                            >
+                                            {info.showPassword ? <Visibility /> : <VisibilityOff />}
+                                            </IconButton>
+                                            </InputAdornment>
+                                        ),
+                                    }}   
+                                />
+                                <Button onClick={sendInfo} className={classes.formButton} variant="contained">Sign In</Button>
                             </form>
                         </Container>
                     </Grid>
