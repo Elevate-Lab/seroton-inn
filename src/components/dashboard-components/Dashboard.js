@@ -29,11 +29,11 @@ const useStyles = makeStyles((theme) => ({
         textAlign: "center"
     },
     nav: {
+        boxShadow: "0px 0px 50px -18px rgba(0, 0, 0, 0.25)",
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "white",
         color: "black",
-        boxShadow: "none",
         height: "10vh"
     },
     navIcon: {
@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     notificationArea: {
+        boxShadow: "0px 0px 50px -18px rgba(0, 0, 0, 0.25)",
         padding: "20px",
         marginTop: "80px",
         flexGrow: "1",

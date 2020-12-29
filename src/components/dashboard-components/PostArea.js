@@ -26,12 +26,12 @@ const useStyles = makeStyles((theme) => ({
             marginRight: "auto",
             justify: "center"
         },
-        [theme.breakpoints.up('xs')] : {
-            marginRight: "10px",
-            marginLeft: "7px"
+        [theme.breakpoints.up('sm')] : {
+            marginRight: "15px",
         }
     },
     composeGrid: {
+        boxShadow: "0px 0px 50px -18px rgba(0, 0, 0, 0.25)",
         padding: "2rem 2rem 2rem 3rem",
         borderRadius: "5px",
         backgroundColor: "white",
@@ -78,9 +78,11 @@ const useStyles = makeStyles((theme) => ({
         color: "rgba(0,0,0,0.8)",
     },
     postMainContent : {
+        boxShadow: "0px 0px 50px -18px rgba(0, 0, 0,0.25)",
+        borderRadius: "5px",
         backgroundColor: "white",
         padding: "2rem",
-        marginTop: "10px"
+        marginTop: "15px"
     },
     postContentText: {
         fontSize: "2rem",
