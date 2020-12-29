@@ -8,6 +8,7 @@ import Profile from "./components/Profile";
 import Compose from "./components/compose-components/Compose";
 import Dashboard from "./components/dashboard-components/Dashboard";
 import BottomNav from "./components/BottomNav";
+import EditProfile from './components/EditProfile';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/dashboard" component={Dashboard} />
           <Route path="/compose" component={Compose} />
           <Route path="/footer" component={BottomNav} />
+          <Route exact path = "/editProfile" component = {EditProfile} />
         </Switch>
       </BrowserRouter>
     </div>

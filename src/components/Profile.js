@@ -1,39 +1,54 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import { ReactComponent as Settings } from '../assets/settings.svg';
 import { ReactComponent as Boy } from '../assets/boy.svg';
 import BottomNav from './BottomNav';
 
+
+
 const Profile = props => {
+
+    const [isEditing,setIsEditing] = useState(false);
+    const [username,setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [name,setName] = useState("");
+    const [profilePic,setProfilepic] = useState("");
+    const [googleId,setGoogleId] = useState("");
+    const [accountStatus, setAccountStatus] = useState(true);
+
+    const getProfile = () => {
+        var user_id = '12a34';
+        axios({
+            method: 'get',
+            url: `http://localhost:5000/user/${user_id}/getProfile`,
+        })
+        .then((res) => {
+            for (let index = 0; index < res.data.user.length; index++) {
+                var data = res.data.user[index];
+                setUsername(data.username);
+                setPassword(data.password);
+                setName(data.name);
+                setProfilepic(data.profilePic);
+                setAccountStatus(data.account_activation_status);
+                setGoogleId(data.googleId);
+            }
+        })
+    }
+
+    useEffect(() => {
+
+        getProfile();
+
+    }, [])
+
     return (
         <div className='profile'>
 
             <div className="profile__navbar">
                 <div className="profile__navbar-logo">LOGO</div>
             </div>
-
-            {/* <div className="profile__sidebar">
-                <div className="profile__sidebar-nav">
-                    <div className="profile__sidebar-icon">
-                        <Grid className='profile__sidebar-svg' />
-                    </div>
-                    <div className="profile__sidebar-icon">
-                        <Leaf className='profile__sidebar-svg' />
-                    </div>
-                    <div className="profile__sidebar-icon">
-                        <Users className='profile__sidebar-svg' />
-                    </div>
-                    <div className="profile__sidebar-icon">
-                        <User className='profile__sidebar-svg' />
-                    </div>
-                </div>
-                <div className="profile__sidebar-settings">
-                    <div className="profile__sidebar-icon">
-                        <Settings className='profile__sidebar-svg' />
-                    </div>
-                </div>
-            </div> */}
-
             <div className="profile__container">
             <div className="profile__main">
 
@@ -45,11 +60,11 @@ const Profile = props => {
                                     <img className="profile__left-img" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="User Pic" />
                                 </div>
                                 <div className="profile__left-username">
-                                    elena@rock12
+                                    {username}
                                 </div>
                             </div>
                             <div className="profile__left-fullname">
-                                Elena Queens
+                                {name}
                             </div>
                             <div className="profile__left-about">
                                 About
@@ -72,10 +87,20 @@ const Profile = props => {
                         </div>
                     </div>
                     <div className="profile__left-edit">
+                        <Link to={{
+                            pathname : '/editProfile',
+                            state: {
+                                username,
+                                password,
+                                googleId,
+                                name,
+                                profilePic
+                            }
+                        }}>
                         <div className="profile__left-edit--icon">
                             <Settings className='profile__left-edit--svg' />
                         </div>
-                        <button className="profile__left-edit--btn">Edit Profile</button>
+                        <button className="profile__left-edit--btn">Edit Profile</button> </Link>
                     </div>
                 </div>
 
