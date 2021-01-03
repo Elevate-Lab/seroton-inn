@@ -155,13 +155,13 @@ export default function CenteredGrid() {
                 if (response.status === 200) {
                   localStorage.setItem('username', response.data.username)
                   localStorage.setItem('newUser',"true");
-                  window.location = `/profile/${response.data.username}`          
+                  window.location = `/profile/${response.data.username}`
                 }
                 console.log(response);
               });
         }
 
-        
+
     }
 
     //This function helps update the info.
@@ -175,11 +175,11 @@ export default function CenteredGrid() {
       const handleClickShowPassword = () => {
         updateInfo({ ...info, showPassword: !info.showPassword });
       };
-    
+
       const handleMouseDownPassword = (event) => {
         event.preventDefault();
       };
-    
+
 
   return (
     <div className={classes.root}>
@@ -187,30 +187,30 @@ export default function CenteredGrid() {
             <Container className={classes.padd70} maxWidth="lg">
                 <Grid container className={classes.gridContainer}>
                     <Grid item className={classes.gridLeft} md={8} xs={12}>
-                        <Typography className={classes.heading} variant="h3">Create Account</Typography>
+                        <Typography className={classes.heading} variant="h3">Create Account At Seroton Inn</Typography>
                         <a href="/auth/google">
                             <img src={gButton} className={classes.logo} alt="google button"></img>
-                        </a> 
+                        </a>
                         <Typography className={classes.subheading}>or use your email for registration</Typography>
                         <Container maxWidth="sm">
                             <form noValidate autoComplete="off">
-                                <TextField id="outlined-basic" 
-                                    className={classes.inputText} 
-                                    value={info.username} 
-                                    label="Username" 
+                                <TextField id="outlined-basic"
+                                    className={classes.inputText}
+                                    value={info.username}
+                                    label="Username"
                                     onChange={handleChange('username')}
                                     variant="outlined" />
-                                <TextField id="outlined-basic" 
-                                    className={classes.inputText} 
-                                    value={info.email} 
-                                    label="Email" 
+                                <TextField id="outlined-basic"
+                                    className={classes.inputText}
+                                    value={info.email}
+                                    label="Email"
                                     onChange={handleChange('email')}
                                     variant="outlined" />
-                                <TextField id="outlined-basic" 
-                                    className={classes.inputText} 
+                                <TextField id="outlined-basic"
+                                    className={classes.inputText}
                                     type={info.showPassword ? 'text' : 'password'}
-                                    value={info.password} 
-                                    label="Password" 
+                                    value={info.password}
+                                    label="Password"
                                     onChange={handleChange('password')}
                                     variant="outlined"
                                     InputProps={{
@@ -225,13 +225,13 @@ export default function CenteredGrid() {
                                             </IconButton>
                                             </InputAdornment>
                                         ),
-                                    }}    
+                                    }}
                                     />
-                                <TextField id="outlined-basic" 
-                                    className={classes.inputText} 
+                                <TextField id="outlined-basic"
+                                    className={classes.inputText}
                                     type={info.showPassword ? 'text' : 'password'}
-                                    value={info.cpassword} 
-                                    label="Confirm Password" 
+                                    value={info.cpassword}
+                                    label="Confirm Password"
                                     onChange={handleChange('cpassword')}
                                     variant="outlined"
                                     InputProps={{
@@ -246,23 +246,23 @@ export default function CenteredGrid() {
                                             </IconButton>
                                             </InputAdornment>
                                         ),
-                                    }}     
+                                    }}
                                     />
                                 <Button onClick={sendInfo} className={classes.formButton} variant="contained">Sign Up</Button>
                             </form>
                         </Container>
                     </Grid>
                     <Grid item className={classes.gridRight} md={4} xs={12}>
-                        <img src={logo} className={classes.logo} alt="logo"></img>  
+                        <img src={logo} className={classes.logo} alt="logo"></img>
                         <Typography className={classes.heading2} variant="h4">Already Joined!</Typography>
                         <Typography className={classes.subheading2} variant="h5">To keep connected with us login <br></br> with your personal info</Typography>
                         <a href="/login" className={classes.signInLink}>
                             Sign In
-                        </a> 
+                        </a>
                     </Grid>
                 </Grid>
             </Container>
-        </div>    
+        </div>
     </div>
   );
 }
