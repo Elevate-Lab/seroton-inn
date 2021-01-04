@@ -55,6 +55,9 @@ const useStyles = makeStyles((theme) => ({
             margin: "2.5%",
         }
     },
+    imageTag : {
+        width: "100%"
+    },
     imageCaptionContainer : {
         padding: "10px"
     },
@@ -88,7 +91,7 @@ export default function ProfilePosts(){
             <Grid item container xs={12} className={classes.imageGridContainer}>
                 <Grid item container direction="column" alignItems="center" xs={12} sm={6} className={classes.imageGrid}>
                     <Grid item>
-                        <img style={{"width" : "100%"}} className={classes.imageTag} src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="Card Pic"/>
+                        <img className={classes.imageTag} src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="Card Pic"/>
                     </Grid>
                     <Grid item container justify="space-between" className={classes.imageCaptionContainer}>
                         <Grid item className={classes.imageCaptionText}>
@@ -103,7 +106,7 @@ export default function ProfilePosts(){
                 </Grid>
                 <Grid item container direction="column" xs={12} sm={6} className={classes.imageGrid}>
                     <Grid item>
-                        <img style={{ "width": "100%" }} src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="Card Pic" />
+                        <img className={classes.imageTag} src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="Card Pic" />
                     </Grid>
                     <Grid item container justify="space-between" className={classes.imageCaptionContainer}>
                         <Grid item className={classes.imageCaptionText}>
@@ -118,7 +121,7 @@ export default function ProfilePosts(){
                 </Grid>
                 <Grid item container direction="column" alignItems="center" xs={12} sm={6} className={classes.imageGrid}>
                     <Grid item>
-                        <img style={{ "width": "100%" }} className={classes.imageTag} src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="Card Pic" />
+                        <img className={classes.imageTag} src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="Card Pic" />
                     </Grid>
                     <Grid item container justify="space-between" className={classes.imageCaptionContainer}>
                         <Grid item className={classes.imageCaptionText}>
@@ -133,7 +136,7 @@ export default function ProfilePosts(){
                 </Grid>
                 <Grid item container direction="column" alignItems="center" xs={12} sm={6} className={classes.imageGrid}>
                     <Grid item>
-                        <img style={{ "width": "100%" }} className={classes.imageTag} src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="Card Pic" />
+                        <img className={classes.imageTag} src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="Card Pic" />
                     </Grid>
                     <Grid item container justify="space-between" className={classes.imageCaptionContainer}>
                         <Grid item className={classes.imageCaptionText}>
@@ -148,7 +151,7 @@ export default function ProfilePosts(){
                 </Grid>
                 <Grid item container direction="column" alignItems="center" xs={12} sm={6} className={classes.imageGrid}>
                     <Grid item>
-                        <img style={{ "width": "100%" }} className={classes.imageTag} src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="Card Pic" />
+                        <img className={classes.imageTag} src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="Card Pic" />
                     </Grid>
                     <Grid item container justify="space-between" className={classes.imageCaptionContainer}>
                         <Grid item className={classes.imageCaptionText}>
@@ -163,7 +166,7 @@ export default function ProfilePosts(){
                 </Grid>
                 <Grid item container direction="column" alignItems="center" xs={12} sm={6} className={classes.imageGrid}>
                     <Grid item>
-                        <img style={{ "width": "100%" }} className={classes.imageTag} src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="Card Pic" />
+                        <img className={classes.imageTag} src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" alt="Card Pic" />
                     </Grid>
                     <Grid item container justify="space-between" className={classes.imageCaptionContainer}>
                         <Grid item className={classes.imageCaptionText}>

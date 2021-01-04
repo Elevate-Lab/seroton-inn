@@ -60,11 +60,41 @@ const useStyles = makeStyles((theme) => ({
             width: "60%"
         }
     },
+    followersIcon : {
+        fill: "#1E31DA",
+        height: "20px",
+        width: "20px"
+    },
+    followingIcon: {
+        fill: "rgb(52, 210, 38)",
+        height: "20px",
+        width: "20px"
+    },
+    followText : {
+        fontSize: "1.7rem",
+        textTransform: "none"
+    },
+    followButtonContainer : {
+        paddingTop : "2.5rem",
+        paddingBottom : "2.5rem"
+    },
+    followButton : {
+        backgroundColor: "#C5C3FF",
+        boxShadow: "none",
+        padding: "0.8rem 3rem",
+        color: "#424242",
+        fontSize: "12px"
+    },
     settingContainer: {
         color: "#c4c4c4",
         [theme.breakpoints.down('sm')]:{
             display: "none"
         } 
+    },
+    settingsIcon: {
+        height: "20px",
+        width: "20px",
+        paddingRight: "3px"
     }
 }));
 
@@ -86,61 +116,33 @@ export default function ProfileOverview(){
             <Grid item container justify="center" alignItems="center" direction="column" xs={6} md={12} spacing={2}>
                 <Grid item container alignItems="center" justify="center" className={classes.followContainer} >
                     <Grid item>
-                        <Boy
-                            style={{
-                                "fill": "#1E31DA",
-                                "height": "20px",
-                                "width": "20px"
-                            }} />
+                        <Boy className={classes.followersIcon}/>
                     </Grid>
                     <Grid item>
-                        <Button style={{
-                            "fontSize": "1.7rem",
-                            "textTransform": "none"
-                        }}>
+                        <Button className={classes.followText}>
                             Followers
                         </Button>
                     </Grid>
                 </Grid>
                 <Grid item container alignItems="center" justify="center" className={classes.followContainer}>
                     <Grid item>
-                        <Boy
-                            style={{
-                                "fill": "rgb(52, 210, 38)",
-                                "height": "20px",
-                                "width": "20px"
-                            }} />
+                        <Boy className={classes.followingIcon}/>
                     </Grid>
                     <Grid item>
-                        <Button style={{
-                            "fontSize": "1.7rem",
-                            "textTransform": "none"
-                        }}>
+                        <Button className={classes.followText}>
                             Following
                         </Button>
                     </Grid>
                 </Grid>
-                <Grid item container alignItems="center" justify="center" style={{
-                    "paddingTop": "2.5rem",
-                    "paddingBottom": "2.5rem"
-                }}>
-                    <Button variant="contained" 
-                    style={{
-                        "backgroundColor": "#C5C3FF",
-                        "boxShadow": "none",
-                        "padding" : "0.8rem 3rem",
-                        "color": "#424242",
-                        "fontSize": "12px"
-                    }}>
+                <Grid item container alignItems="center" justify="center" className={classes.followButtonContainer}>
+                    <Button variant="contained" className={classes.followButton}>
                         Follow
                     </Button>
                 </Grid>
             </Grid>
             <Grid item container xs={0} md={12} className={classes.settingContainer} alignItems="flex-end">
-                <Settings style={{
-                    "height": "20px",
-                    "width": "20px",
-                    "paddingRight" : "3px"
+                <Settings className={classes.settingsIcon} style={{
+                    
                 }}/><span>Edit Profile</span>
             </Grid>
         </Grid>
