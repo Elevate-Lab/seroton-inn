@@ -1,64 +1,63 @@
 import React from 'react';
 import Posts from './PostArea';
-import Sidebar from './Sidebar.js';
+import BottomNav from '../BottomNav';
 
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import { makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
+        backgroundColor: "#f5f5f5"
     },
-    menuButton: {
-        marginRight: theme.spacing(2),
-        [theme.breakpoints.up('sm')] : {
-            display: 'none'
-        },
+    root2: {
+        backgroundColor: 'white'
+    },
+    root3: {
+        backgroundColor: "#f5f5f5",
     },
     menuIcon: {
         fontSize: "25px"
     },
     title: {
+        paddingLeft: "10px",
         flexGrow: 1,
         fontSize: "20px",
         color: "#C4C4C4",
         textAlign: "center"
     },
     nav: {
+        boxShadow: "0px 0px 50px -18px rgba(0, 0, 0, 0.25)",
+        alignItems: "center",
+        justifyContent: "center",
         backgroundColor: "white",
         color: "black",
-        boxShadow: "none",
         height: "10vh"
     },
-    root5: {
-        overflowY: "scroll",
-        flexGrow: "1",
-        backgroundColor: "#F5F5F5",
-    },
-    contentContainerGrid: {
-        flexWrap: "nowrap"
+    navIcon: {
+        textAlign: "center",
+        '& .MuiSvgIcon-root': {
+            fontSize: '20px',
+            color: "red"
+        },
     },
     notificationArea: {
+        boxShadow: "0px 0px 50px -18px rgba(0, 0, 0, 0.25)",
+        padding: "20px",
+        marginTop: "80px",
         flexGrow: "1",
-        maxWidth: "256px",
-        width: "18%",
         backgroundColor: "white",
         display: 'none',
-        height: "200px",
+        height: "400px",
         [theme.breakpoints.up('md')] : {
             display: 'flex'
         },
-        margin: "20px 10px 20px 10px",
         textAlign: "center",
         borderRadius: "5px",
         justifyContent: "center",
-        padding: "20px"
-    }
+    },
 }));
 
 export default function DashBoard() {
@@ -66,31 +65,31 @@ export default function DashBoard() {
 
     return (
         <div className={classes.root}>
-            <div className={classes.root2} style={{height: "10%"}}>
-                <AppBar className={classes.nav} position="static">
-                    <Toolbar>
-                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                            <MenuIcon className={classes.menuIcon} />
-                        </IconButton>
-                        <Typography variant="h6" className={classes.title}>
-                            LOGO
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-            </div>
-            <Grid container className={classes.root3} style={{flexWrap: "nowrap", height: "90%"}}>
-                <Sidebar />
-                <div className={classes.root5} style={{overflowY: "auto",height: "90vh"}}>
-                    <Grid container className={classes.contentContainerGrid} >
-                        <Posts/>
-                        <Grid item className={classes.notificationArea}>
-                            <Typography variant="h4">
-                                Notifications
+            <div className={classes.root2}>
+                <AppBar className={classes.nav} position="fixed">
+                    <Grid container justify="space-between" alignItems="center">
+                        <Grid item xs={2}>
+                            <Typography variant="h6" className={classes.title}>
+                                LOGO
                             </Typography>
                         </Grid>
+                        <Grid item xs={2} className={classes.navIcon}>
+                            <PowerSettingsNewIcon />
+                        </Grid>
                     </Grid>
-                </div>
+                </AppBar>
+            </div>
+            <Grid container className={classes.root3}>
+                <Grid item md={1} sm={1}/>
+                <Posts />
+                <Grid item className={classes.notificationArea} xs={false} md={3}>
+                    <Typography variant="h4">
+                        Notifications
+                    </Typography>
+                </Grid>
+                <Grid item md={1} sm={1}/>
             </Grid>
+            <BottomNav />
         </div>
     );
 }

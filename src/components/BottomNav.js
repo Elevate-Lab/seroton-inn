@@ -10,8 +10,9 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
 
 const useStyles = makeStyles(theme => ({
     root: {
+        backgroundColor: "white",
         boxShadow: '0px 0px 50px -18px rgba(0, 0, 0, 0.25)',
-        position: 'absolute',
+        position: 'fixed',
         bottom: '0',
         width: '100%',
         [theme.breakpoints.down('sm')]: {
@@ -28,6 +29,7 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('sm')]:{
             '& .MuiBottomNavigation-root':{
                 maxWidth: '1280px',
+                margin: "0px auto 0px auto"
             },
             '& .MuiSvgIcon-root':{
                 fontSize: '24px'

@@ -14,54 +14,61 @@ import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import ShareIcon from '@material-ui/icons/Share';
 import GifIcon from '@material-ui/icons/Gif';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
-import MoodIcon from '@material-ui/icons/Mood';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 const useStyles = makeStyles((theme) => ({
     postsArea: {
-        [theme.breakpoints.down('sm')]: {
-            width: "95%",
-            margin: "20px 10px 20px 10px",
+        marginBottom: "70px",
+        backgroundColor: "#f5f5f5",
+        [theme.breakpoints.down('xs')] : {
+            maxWidth: "95%",
+            marginLeft: "auto",
+            marginRight: "auto",
+            justify: "center"
         },
-        [theme.breakpoints.down('lg')]: {
-            width: "900px"
-        },
-        width: "70%",
-        margin: "20px 10px 20px 10px"
+        [theme.breakpoints.up('sm')] : {
+            marginRight: "15px",
+        }
     },
     composeGrid: {
-        display: "flex",
-        alignItems: "center",
+        boxShadow: "0px 0px 50px -18px rgba(0, 0, 0, 0.25)",
+        padding: "2rem 2rem 2rem 3rem",
         borderRadius: "5px",
-        padding: "15px",
         backgroundColor: "white",
-        flexGrow: "1",
-        justifyContent: "space-between"
+        marginTop : "80px"
+    },
+    composeMessageContainer: {
+        flexWrap: "nowrap"
     },
     composeMessage: {
-        paddingLeft: '12px',
+        marginLeft: "7px",
         fontSize: "1.8rem",
         fontWeight: "500",
-        display: "flex",
-        alignItems: "center",
     },
     composeButton: {
         boxShadow: 'none',
-        backgroundColor: "#F5F5F5",
+        backgroundColor: "#C5C3FF",
         fontSize: "1.5rem"
+    },
+    userContainer: {
+        marginBottom : "7px"
+    },
+    userPostContainer: {
+        flexWrap: "nowrap"
     },
     userImage: {
         borderRadius: "1rem",
-        width: "4.2rem",
-        height: "4.2rem"
+        width: "5rem",
+        height: "5rem"
+    },
+    usernameContainer: {
+        paddingLeft : "7px"
     },
     userName: {
-        paddingLeft: '12px',
         fontSize: "1.8rem",
         fontWeight: "500"
     },
     dateTimeDetails: {
-        paddingLeft: '12px',
         fontSize: "1.6rem",
         fontWeight: "500",
         color: "rgba(0,0,0,0.6)"
@@ -69,13 +76,13 @@ const useStyles = makeStyles((theme) => ({
     moreHorizIcon: {
         fontSize: "20px",
         color: "rgba(0,0,0,0.8)",
-        transform: "translate(0, -8px)"
     },
-    postGridItem: {
-        padding: "12px",
+    postMainContent : {
+        boxShadow: "0px 0px 50px -18px rgba(0, 0, 0,0.25)",
+        borderRadius: "5px",
         backgroundColor: "white",
-        borderRadius: "10px",
-        marginTop: "16px"
+        padding: "2rem",
+        marginTop: "15px"
     },
     postContentText: {
         fontSize: "2rem",
@@ -117,6 +124,10 @@ const useStyles = makeStyles((theme) => ({
             outline: "none",
         }
     },
+    reactionsContainer: {
+        marginTop: "7px",
+        marginBottom: "7px"
+    },
     commentImage: {
         borderRadius: "5px",
         width: "29px",
@@ -127,78 +138,78 @@ const useStyles = makeStyles((theme) => ({
 export default function Posts() {
     const classes = useStyles();
     return(
-        <Grid item className={classes.postsArea}>
-            <Grid container alignItems="center" justify="space-between">
-                <Grid item className={classes.composeGrid}>
-                    <Grid item style={{ display: "flex", alignItems: "center", justifyContent: "space-evenly" }}>
-                        <img src={testImg} alt="testImg" className={classes.userImage} />
-                        <Typography className={classes.composeMessage}>
-                            Hey! How you doing? Share your mood! <MoodIcon style={{fontSize: "20px", paddingLeft:"4px"}} />
-                        </Typography>
-                    </Grid>
-                    <Grid item>
+        <Grid item container className={classes.postsArea} xs={12} sm={10} md={7}>
+            <Grid item container className={classes.composeGrid} justify="space-between" xs={12}>
+                <Grid item xs={8} container alignItems="center" spacing={2} className={classes.composeMessageContainer}>
+                    <img src={testImg} alt="testImg" className={classes.userImage} />
+                    <Typography className={classes.composeMessage}>
+                        Hey! How you doing? Share your mood!
+                    </Typography>
+                </Grid>
+                <Grid item container xs={4} justify="flex-end">
+                    <Grid item >
                         <Button variant="contained" className={classes.composeButton}>Compose</Button>
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid container>
-                <Grid item className={classes.postGridItem}>
-                    <Grid item style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                        <Grid item style={{ display: "flex", alignItems: "center", justifyContent: "space-evenly" }}>
-                            <img src={testImg} alt="testImg" className={classes.userImage} />
-                            <Grid>
+            <Grid item container xs={12} className={classes.postMainContent}>
+                <Grid item container justify="space-between" xs={12} alignItems="center" className={classes.userContainer}>
+                    <Grid item container xs={4} sm={3} className={classes.userPostContainer}>
+                        <img src={testImg} alt="testImg" className={classes.userImage} />
+                        <Grid container className={classes.usernameContainer} >
+                            <Grid item xs={12}>
                                 <Typography className={classes.userName}>
                                     username
                                 </Typography>
-                                <Typography className={classes.dateTimeDetails}>
-                                    Time • Place
-                                </Typography>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <span className={classes.dateTimeDetails}>Time • Place</span>
                             </Grid>
                         </Grid>
-                        <Grid item>
-                            <MoreHorizIcon className={classes.moreHorizIcon}/>
+                    </Grid>
+                    <Grid item xs={1} container justify="flex-end">
+                        <Grid item> 
+                            <MoreHorizIcon className={classes.moreHorizIcon} />
                         </Grid>
                     </Grid>
-                    <Grid item className={classes.postImageTextGrid}>
-                        <img src={img4} alt="testImg" className={classes.postImage} />
-                        <Typography className={classes.postContentText}>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                </Grid>
+                <Grid item xs={12}>
+                    <img src={img4} alt="testImg" className={classes.postImage} />
+                    <Typography className={classes.postContentText}>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                    </Typography>
+                </Grid>
+                <Grid item className={classes.break}></Grid>
+                <Grid item container xs={12} className={classes.reactionsContainer}>
+                    <Grid item className={classes.reactions}>
+                        <ChatBubbleOutlineIcon style={{ fontSize: "2rem", width: "3em" }} />
+                        <Typography style={{ fontSize: "2rem" }}>
+                            Comments
                         </Typography>
                     </Grid>
-                    <Grid className={classes.break}></Grid>
-                    <Grid item>
-                        <Grid container style={{ display: "flex",flexWrap: "nowrap", padding: "10px 0px 10px 0px", transform: "translate(-16px, 0)" }} justify="flex-start">
-                            <Grid container className={classes.reactions}>
-                                <ChatBubbleOutlineIcon style={{ fontSize: "2rem", width: "3em" }} />
-                                <Typography style={{ fontSize: "2rem", transform: "translate(-8px,0)" }}>
-                                    Comments
-                                </Typography>
-                            </Grid>
-                            <Grid container className={classes.reactions}>
-                                <ShareIcon style={{ fontSize: "2rem", padding: "0px 8px 0px 0px", width: "3em" }} />
-                                <Typography style={{ fontSize: "2rem", padding: "0px 0px 0px 0px", transform: "translate(-12px,0)" }}>
-                                    Share
-                                </Typography>
-                            </Grid>
-                        </Grid>
+                    <Grid item className={classes.reactions}>
+                        <ShareIcon style={{ fontSize: "2rem", padding: "0px 8px 0px 0px", width: "3em" }} />
+                        <Typography style={{ fontSize: "2rem", padding: "0px 0px 0px 0px" }}>
+                            Share
+                        </Typography>
                     </Grid>
-                    <Grid item className={classes.postInputField}>
-                        <img src={testImg} alt="testImg" className={classes.commentImage} />
-                        <TextField
-                            className={classes.postInputBox}
-                            id="outlined-search"
-                            type="search"
-                            variant="outlined" InputProps={{
-                                endAdornment: (
-                                    <InputAdornment position="start">
-                                        <GifIcon style={{ fontSize: "20px" }} />
-                                        <InsertEmoticonIcon style={{ fontSize: "20px" }} />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    </Grid>
+                </Grid>
+                <Grid item className={classes.postInputField} xs={12}>
+                    <img src={testImg} alt="testImg" className={classes.commentImage} />
+                    <TextField
+                        className={classes.postInputBox}
+                        id="outlined-search"
+                        type="search"
+                        variant="outlined" InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="start">
+                                    <GifIcon style={{ fontSize: "20px" }} />
+                                    <InsertEmoticonIcon style={{ fontSize: "20px" }} />
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
                 </Grid>
             </Grid>
         </Grid>
