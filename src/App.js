@@ -23,6 +23,7 @@ function App() {
           <Route path="/compose" component={Compose} />
           <Route path="/footer" component={BottomNav} />
           <Route exact path = "/editProfile" component = {EditProfile} />
+
         </Switch>
       </BrowserRouter>
     </div>
