@@ -1,7 +1,7 @@
 import React from 'react';
-import img4 from '../../assests/image/image4.png';
 import { ReactComponent as Boy } from '../../assets/boy.svg';
-
+import axios from 'axios';
+import {Link} from 'react-router-dom';
 import { 
     Grid,
     Avatar,
@@ -15,6 +15,7 @@ import {
 
 const useStyles = makeStyles((theme) => ({
     mainContainer: {
+        fontFamily: "Rubik",
         boxShadow: "0px 0px 50px -18px rgba(0, 0, 0, 0.25)",
         borderRadius: "10px",
         alignItems: "center",
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.down('sm')]: {
             flexDirection: "row",
-            height: "35vh",
+            height: "39vh",
             padding: "20px",
             background: "white",
             width: "90%",
@@ -38,13 +39,26 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(18),
         width: theme.spacing(18),
     },
+    usernameContainer : {
+        color: "#000",
+        fontSize: "14px",
+        padding: "5px",
+        fontWeight: "600"
+    },
+    nameContainer: {
+        color: "#000",
+        fontSize: "14px",
+        fontWeight: "600"
+    },
+    nameAboutContainer: {
+        padding: "10px 0px 0px 10px"
+    },
     aboutContainer: {
         width: "70%",
-        padding: "20px 10px 20px 10px",
-        marginBottom: "20px",
-        textAlign: "center",
+        padding: "5px 10px 10px 0px",
         [theme.breakpoints.up('md')]: {
-            borderBottom: "1px solid rgba(0,0,0,0.1)"
+            borderBottom: "1px solid rgba(0,0,0,0.1)",
+            paddingBottom: "20px"
         }
     },
     aboutText: {
@@ -101,16 +115,52 @@ const useStyles = makeStyles((theme) => ({
 export default function ProfileOverview(){
     const classes = useStyles();
 
+    const [profileData,setProfileData] = React.useState({});
+    const [profileImageUrl,setProfileImageUrl] = React.useState('');
+
+    React.useEffect(() => {
+
+        /* For Fetching profile data we need userId which we will get after login, For now I'm hardcoding it. */
+        const user_id = "5fe8969fcd8ebe40fc8eede3";
+        /* *********** */
+
+        //Fetch Profile Data
+        getProfileData(user_id);
+
+    },[]);
+
+    const getProfileData = (user_id) => {
+        axios.get(`/user/${user_id}/getProfile`,{
+            headers: {
+                'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+            },
+        })
+        .then(res => {
+            console.log(res);
+            setProfileData(res.data.user);
+            var profileImageName = res.data.user.profilePic.filename;
+            setProfileImageUrl(`/image/${profileImageName}`);
+        })
+    }
+
     return(
         <Grid item container className={classes.mainContainer} justify="space-between" xs={10} >
-            <Grid item container alignItems="center" direction="column" xs={6} md={12}>
-                <Grid item>
-                    <Avatar src={img4} className={classes.largeAvatar}/>
+            <Grid item container direction="column" xs={6} md={12}>
+                <Grid item container alignItems="center" direction="column">
+                    <Grid item>
+                        <Avatar src={profileImageUrl} className={classes.largeAvatar} />
+                    </Grid>
+                    <Grid item className={classes.usernameContainer}>
+                        <span>{profileData.username}</span>
+                    </Grid>
                 </Grid>
-                <Grid item className={classes.aboutContainer}>
-                    <span className={classes.aboutText} style={{
-                        
-                    }}>About</span>
+                <Grid item className={classes.nameAboutContainer}>
+                    <Grid item className={classes.nameContainer}>
+                        <span>{profileData.name}</span>
+                    </Grid>
+                    <Grid item className={classes.aboutContainer}>
+                        <span className={classes.aboutText}>About</span>
+                    </Grid>
                 </Grid>
             </Grid>
             <Grid item container justify="center" alignItems="center" direction="column" xs={6} md={12} spacing={2}>
@@ -140,10 +190,14 @@ export default function ProfileOverview(){
                     </Button>
                 </Grid>
             </Grid>
-            <Grid item container xs={0} md={12} className={classes.settingContainer} alignItems="flex-end">
-                <Settings className={classes.settingsIcon} style={{
-                    
-                }}/><span>Edit Profile</span>
+            <Grid item container  md={12} className={classes.settingContainer} alignItems="flex-end">
+                <Link to={{
+                    pathname: "/editProfile",
+                    userId : profileData._id
+                }}>
+                    <Settings className={classes.settingsIcon} />
+                    <span>Edit Profile</span>
+                </Link>
             </Grid>
         </Grid>
     )

@@ -22,6 +22,7 @@ import {
 
 import BottomNav from './BottomNav';
 import img4 from '../assests/image/image4.png';
+import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -133,11 +134,66 @@ const StyledBadge = withStyles((theme) => ({
     },
 }))(Badge);
 
-export default function EditProfile(){
+export const EditProfile = () => {
     const classes = useStyles();
 
+    const [user_id, setUser_id] = React.useState('');
     const [isEditingUsername, setIsEditingUsername] = useState(false);
     const [isEditingName, setIsEditingName] = useState(false);
+    const [editUsername,setEditUsername] = React.useState('');
+    const [editName,setEditName] = React.useState('');
+    const [editProfilePic, setProfilePic] = React.useState();
+    const [profileImageUrl, setProfileUrl] = React.useState();
+    const [isUpdated,setIsUpdated] = React.useState(false);
+
+    React.useEffect(() => {
+        /* For Fetching profile data we need userId which we will get after login, For now I'm hardcoding it. */
+        const user_id = "5fe8969fcd8ebe40fc8eede3";
+        /* *********** */
+
+        //Fetch Profile Data
+        getProfileData(user_id);
+        setUser_id(user_id);
+    },[isUpdated])
+
+    const getProfileData = (user_id) => {
+        axios.get(`/user/${user_id}/getProfile`, {
+            headers: {
+                'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
+            },
+        })
+            .then(res => {
+                console.log(res);
+                setEditUsername(res.data.user.username);
+                setEditName(res.data.user.name);
+                setProfilePic(res.data.user.profilePic);
+                var profileImageName = res.data.user.profilePic.filename;
+                setProfileUrl(`/image/${profileImageName}`);
+            })     
+    }
+
+    const confirmUpdate = (username,name,profilePic,user_id,isUpdated) => {
+        console.log(username,name,profilePic);
+        var formData = new FormData();
+        formData.append('username', username);
+        formData.append('file',profilePic);
+        formData.append('name',name);
+        axios({
+            method: 'patch',
+            url: `/user/${user_id}/editUser`,
+            data: formData,
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then((res) => {
+            console.log(res);
+            setIsUpdated(!isUpdated);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    }
 
     return(
         <div className={classes.root}>
@@ -164,7 +220,7 @@ export default function EditProfile(){
                                 <Grid item>
                                     <StyledBadge badgeContent={
                                         <>
-                                        <label for="imageInput" className={classes.imageInputLabel}>
+                                        <label htmlFor="imageInput" className={classes.imageInputLabel}>
                                                 <Camera 
                                                     style = {{
                                                         "cursor": "pointer",
@@ -172,10 +228,10 @@ export default function EditProfile(){
                                                     }} 
                                                 />
                                         </label>
-                                        <input type="file" id="imageInput" style={{"display": "none"}}/>
+                                        <input type="file" id="imageInput" onChange={(e) => setProfilePic(e.target.files[0])} style={{"display": "none"}}/>
                                         </>
                                     }>
-                                        <Avatar alt="Remy Sharp" src={img4} className={classes.largeAvatar} />
+                                        <Avatar alt="Remy Sharp" src={profileImageUrl} className={classes.largeAvatar} />
                                     </StyledBadge>
                                 </Grid>
                                 <Grid item>
@@ -184,8 +240,9 @@ export default function EditProfile(){
                                             <>
                                                 <Input 
                                                     className={classes.userNameInputField}
-                                                    defaultValue="Hello world" 
-                                                    inputProps={{ 'aria-label': 'description' }} 
+                                                    defaultValue={editUsername} 
+                                                    inputProps={{ 'aria-label': 'description' }}
+                                                    onChange={(e) => setEditUsername(e.target.value)} 
                                                     endAdornment={
                                                         <InputAdornment position="end">
                                                             <IconButton onClick={() => setIsEditingUsername(!isEditingUsername)}>
@@ -203,7 +260,7 @@ export default function EditProfile(){
                                         ) : (
                                                 <>
                                                     <div className={classes.usernameField}>
-                                                        <span>Username 
+                                                        <span>{editUsername} 
                                                             <IconButton onClick={() => setIsEditingUsername(!isEditingUsername)}>
                                                                 <Edit 
                                                                     style={{
@@ -232,7 +289,8 @@ export default function EditProfile(){
                                                 <Grid item>
                                                     <Input
                                                         className={classes.nameInputField}
-                                                        defaultValue="Guddu Pandit"
+                                                        defaultValue={editName}
+                                                        onChange={(e) => setEditName(e.target.value)}
                                                         inputProps={{ 'aria-label': 'description' }}
                                                         endAdornment={
                                                             <InputAdornment position="end">
@@ -252,7 +310,7 @@ export default function EditProfile(){
                                         ) : (
                                             <>
                                                 <Grid item className={classes.nameField}>
-                                                    <span>GudduPandit
+                                                    <span>{editName}
                                                         <IconButton onClick={() => setIsEditingName(!isEditingName)}>
                                                             <Edit 
                                                                 style={{
@@ -275,7 +333,7 @@ export default function EditProfile(){
                                     <Button variant="outlined" className={classes.formButton1}>Cancel</Button>
                                 </Grid>
                                 <Grid item>
-                                    <Button variant="outlined" className={classes.formButton2}>Save</Button>
+                                    <Button onClick={() => confirmUpdate(editUsername,editName,editProfilePic,user_id,isUpdated)} variant="outlined" className={classes.formButton2}>Save</Button>
                                 </Grid>
                             </Grid>
                         </Grid>

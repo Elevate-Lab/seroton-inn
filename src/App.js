@@ -7,7 +7,7 @@ import SignIn from "./components/auth-components/signin";
 import Compose from "./components/compose-components/Compose";
 import Dashboard from "./components/dashboard-components/Dashboard";
 import BottomNav from "./components/BottomNav";
-import EditProfile from './components/EditProfile';
+import { EditProfile }  from './components/EditProfile';
 import Profile from "./components/profile-components/Profile";
 
 function App() {
